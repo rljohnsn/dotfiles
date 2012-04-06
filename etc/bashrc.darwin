@@ -1,0 +1,27 @@
+
+
+# Path
+
+
+
+
+# Alias'
+alias echo='/bin/echo -n'
+alias ls='ls -G' # the -G command in OS-X is for colors, in Linux it's no groups
+
+alias v=mvim
+alias vc=vim
+alias vt='mvim --remote-tab'
+
+alias processes_all='ps -Afjv'
+alias systail='tail -f /var/log/system.log'
+
+
+
+
+
+# Hello Messsage --------------------------------------------------
+echo  "Kernel Information: " `uname -smr`
+echo  "`bash --version`"
+echo  "Uptime: "; uptime
+echo  "Server time is: "; date
