@@ -17,13 +17,6 @@ export TERM=xterm-color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1 
 
-if [ "$OS" = "linux" ] ; then
-  alias ls='ls --color=auto' # For linux, etc
-  # ls colors, see: http://www.linux-sxs.org/housekeeping/lscolors.html
-  export LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rb=90'  #LS_COLORS is not supported by the default ls command in OS-X
-else
-  alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
-fi
 
 # Setup some colors to use later in interactive shell or scripts
 export COLOR_NC='\033[0m' # No Color
@@ -97,19 +90,17 @@ if [ $IS_INTERACTIVE = 'true' ] ; then # Interactive shell only
 
 
   # Prompts ----------------------------------------------------------
-  #git_dirty_flag() {
-    #git status 2> /dev/null | grep -c : | awk '{if ($1 > 0) print "⚡"}'
-  #}
+  git_dirty_flag() {
+    git status 2> /dev/null | grep -c : | awk '{if ($1 > 0) print "⚡"}'
+  }
 
   prompt_func() {
       previous_return_value=$?;
       if [ $IS_REMOTE = 'true' ] ; then
         prompt="\[\033]0;${USER} ${PWD}\007\]\[${COLOR_PURPLE}\]\w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_NC}\] "
       else
-        prompt="\[\033]0;${USER} ${PWD}\007\]\[${COLOR_GREEN}\]\w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_NC}\] "
+      	prompt="\[${COLOR_GREEN}\]${USER} ${PWD}\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_YELLOW}\]$(git_dirty_flag)\[${COLOR_NC}\] "
       fi
-      #prompt="\033]0;${PWD}\007\[${COLOR_GREEN}\]\w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_NC}\] "
-      #prompt="\[${COLOR_GREEN}\]\w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_YELLOW}\]$(git_dirty_flag)\[${COLOR_NC}\] "
 
       if test $previous_return_value -eq 0
       then
@@ -133,7 +124,7 @@ if [ $IS_INTERACTIVE = 'true' ] ; then # Interactive shell only
 
   function xtitle {  # change the title of your xterm* window
     unset PROMPT_COMMAND
-    echo -ne "\033]0;$1\007" 
+    echo "\033]0;$1\007" 
   }
 
 fi
@@ -156,13 +147,8 @@ export EDITOR='vim'  #Command line
 export GIT_EDITOR='vim'
 #alias gvim='/Applications/MacVim.app/Contents/MacOS/vim -g'
 
-if [ "$OS" = "darwin" ] ; then
-  alias v=mvim
-  alias vc=vim
-  alias vt='mvim --remote-tab'
-else
-  alias v=vim
-fi
+alias v=vim
+
 
 
 
@@ -239,17 +225,6 @@ alias top='top -o cpu' # os x
 
 alias df='df -h' # Show disk usage
 
-if [ "$OS" = "linux" ] ; then
-  alias processes_all='ps -AFH'
-else
-  alias processes_all='ps -Afjv'
-fi
-
-if [ "$OS" = "linux" ] ; then
-  alias systail='tail -f /var/log/syslog'
-else
-  alias systail='tail -f /var/log/system.log'
-fi
 
 # Shows most used commands, cool script I got this from: http://lifehacker.com/software/how-to/turbocharge-your-terminal-274317.php
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
@@ -294,11 +269,3 @@ if [ -f ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
 
-
-
-# Test ------------------------------------------------------------------------ 
-
-#if [ "$OS" = "linux" ] ; then
-#elif
-#else
-#fi
