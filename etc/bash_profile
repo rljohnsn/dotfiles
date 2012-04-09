@@ -12,6 +12,7 @@
 # in this order:
 #     bashrc
 #     .bashrc
-#source ~/cl/etc/bashrc.default
-#source ~/cl/etc/bashrc.${OS}
-#source ~/.bashrc
+source ~/cl/etc/bashrc.default
+if [ "$OS" = "linux" ]; then
+   source ~/.bashrc
+fi

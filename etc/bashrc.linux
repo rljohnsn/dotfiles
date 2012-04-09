@@ -13,7 +13,7 @@ alias systail='tail -f /var/log/syslog'
 
 
 ## Hello Messsage --------------------------------------------------
-echo "Kernel Information: " `uname -smr`
+echo "Kernel Information: `uname -smr`"
 echo "`bash --version`"
-echo "Uptime: "; uptime
-echo "Server time is: "; date
+echo "Uptime: `uptime`"
+echo "Server time is: `date`"
