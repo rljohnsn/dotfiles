@@ -106,6 +106,7 @@ if [ $IS_INTERACTIVE = 'true' ] ; then # Interactive shell only
         prompt="\[${COLOR_GREEN}\]${USER} \[${COLOR_PURPLE}\]\w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_NC}\] "
       fi
 
+      prompt="\[${COLOR_GREEN}\]${USER}@${HOSTNAME%%.*} \w\[${COLOR_GRAY}\]$(__git_ps1)\[${COLOR_YELLOW}\]$(git_dirty_flag)\[${COLOR_NC}\] "
 
       if test $previous_return_value -eq 0
       then
@@ -226,7 +227,7 @@ alias reloadbash='source ~/cl/etc/bash_profile'
 
 alias ducks='du -cksh * | sort -rn|head -11' # Lists folders and files sizes in the current folder
 alias m='more'
-alias top='top -o cpu' # os x
+#alias top='top -o cpu' # os x
 
 alias df='df -h' # Show disk usage
 
@@ -252,7 +253,7 @@ killhard() {
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 # Fixes problems with sending email in ruby
-export RUBYOPT="-r openssl"
+#export RUBYOPT="-r openssl"
 
 # Spin: gem install spin
 alias spin="spin serve -Itest | highlight red ' [1-9]0* failures' purple '[_a-zA-Z0-9]*\.rb.[0-9]*' red 'Error:' red 'Failure:' red ' [1-9]0* errors' green ' 0 errors' green ' 0 failures'"
