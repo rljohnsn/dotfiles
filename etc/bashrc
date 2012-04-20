@@ -275,6 +275,9 @@ if [ -f ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
 
+if [[ $TERM != 'screen' ]] ; then
+      screen -dRL;exit
+fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
