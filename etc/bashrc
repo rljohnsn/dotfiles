@@ -275,3 +275,10 @@ if [ -f ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
 
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export RUBYLIB="$RUBYLIB:/opt/puppet/lib/ruby/1.8"
+export RUBYPATH="$RUBYPATH:/opt/puppet/bin"
+export PATH="$PATH:/opt/puppet/bin"
