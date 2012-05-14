@@ -18,6 +18,6 @@ echo "`bash --version`"
 echo "Uptime: `uptime`"
 echo "Server time is: `date`"
 
-if [[ $TERM != 'screen' ]] ; then
-      screen -dRL;exit
+if [[ "x${STY}x" == "xx" ]]; then 
+   screen -dRL
 fi
