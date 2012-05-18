@@ -18,6 +18,14 @@ echo "`bash --version`"
 echo "Uptime: `uptime`"
 echo "Server time is: `date`"
 
+ssh() {
+   /usr/bin/ssh BNWEB+`whoami`@$1
+}
+
+rssh() {
+   /usr/bin/ssh root@$1
+}
+
 if [[ "x${STY}x" == "xx" ]]; then 
    screen -dRL
 fi
